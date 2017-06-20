@@ -1,6 +1,6 @@
 package dk.magenta.datafordeler.cpr.parsers;
 
-import dk.magenta.datafordeler.cpr.records.CprRecord;
+import dk.magenta.datafordeler.cpr.records.PersonalDataRecord;
 import dk.magenta.datafordeler.cpr.records.CprSlutRecord;
 import dk.magenta.datafordeler.cpr.records.CprStartRecord;
 import org.springframework.stereotype.Component;
@@ -18,17 +18,17 @@ public abstract class CprSubParser extends LineParser {
     }
 
     @Override
-    protected CprRecord parseLine(String line) {
+    protected PersonalDataRecord parseLine(String line) {
         return this.parseLine(line.substring(0, 3), line);
     }
 
-    protected CprRecord parseLine(String recordType, String line) {
+    protected PersonalDataRecord parseLine(String recordType, String line) {
         System.out.println(recordType);
         try {
-            if (recordType.equals(CprRecord.RECORDTYPE_START)) {
+            if (recordType.equals(PersonalDataRecord.RECORDTYPE_START)) {
                 return new CprStartRecord(line);
             }
-            if (recordType.equals(CprRecord.RECORDTYPE_SLUT)) {
+            if (recordType.equals(PersonalDataRecord.RECORDTYPE_SLUT)) {
                 return new CprSlutRecord(line);
             }
         } catch (ParseException e) {

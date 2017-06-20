@@ -1,6 +1,6 @@
 package dk.magenta.datafordeler.cpr.parsers;
 
-import dk.magenta.datafordeler.cpr.records.CprRecord;
+import dk.magenta.datafordeler.cpr.records.PersonalDataRecord;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ public class PersonParser extends CprSubParser {
     * Inner classes for parsed data
     * */
 
-    public abstract class PersonDataRecord extends CprRecord {
+    public abstract class PersonDataRecord extends PersonalDataRecord {
         public static final String RECORDTYPE_EXAMPLE = "001";
         // TODO: Add one for each data type
 
@@ -46,7 +46,6 @@ public class PersonParser extends CprSubParser {
     }
 
 
-
     //------------------------------------------------------------------------------------------------------------------
 
     public PersonParser() {
@@ -56,8 +55,8 @@ public class PersonParser extends CprSubParser {
 
 
     @Override
-    protected CprRecord parseLine(String recordType, String line) {
-        CprRecord r = super.parseLine(recordType, line);
+    protected PersonalDataRecord parseLine(String recordType, String line) {
+        PersonalDataRecord r = super.parseLine(recordType, line);
         if (r != null) {
             return r;
         }
